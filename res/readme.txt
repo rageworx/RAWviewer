@@ -1,0 +1,1 @@
+This 'res' folder is only for Windows build.
