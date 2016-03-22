@@ -6,39 +6,42 @@
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
-			<Target title="Debug.Win32">
+			<Target title="Debug">
 				<Option output="bin\Debug\RAWviewer" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Debug\" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add option="-DWIN32" />
-					<Add option="-DUNICODE" />
-					<Add option="-D_UNICODE" />
+					<Add option="-DDEBUG" />
+					<Add option="-D_DEBUG" />
 				</Compiler>
 			</Target>
-			<Target title="Release.Win32">
+			<Target title="Release">
 				<Option output="bin\Release\RAWviewer" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Release\" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-fexpensive-optimizations" />
 					<Add option="-s" />
-					<Add option="-DWIN32" />
-					<Add option="-DUNICODE" />
-					<Add option="-D_UNICODE" />
 				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-mms-bitfields" />
+			<Add option="-DWIN32" />
+			<Add option="-DUNICODE" />
+			<Add option="-D_UNICODE" />
 			<Add directory="$(#fl.include)" />
-			<Add directory="src" />
-			<Add directory="src\fltk" />
+			<Add directory="res" />
 		</Compiler>
 		<Linker>
+			<Add option="-static" />
 			<Add library="fltk" />
 			<Add library="ole32" />
 			<Add library="uuid" />
@@ -50,28 +53,36 @@
 			<Add library="kernel32" />
 			<Add directory="$(#fl.lib)" />
 		</Linker>
-		<Unit filename="src\fltk\Fl_HistogramDrawer.cpp" />
-		<Unit filename="src\fltk\Fl_HistogramDrawer.h" />
-		<Unit filename="src\fltk\Fl_ImageDisplayBox.cpp" />
-		<Unit filename="src\fltk\Fl_ImageDisplayBox.h" />
-		<Unit filename="src\fltk\Fl_ImageViewer.cpp" />
-		<Unit filename="src\fltk\Fl_ImageViewer.h" />
-		<Unit filename="src\fltk\Fl_TransBox.cpp" />
-		<Unit filename="src\fltk\Fl_TransBox.h" />
-		<Unit filename="src\fltk\fl_smimg.cpp" />
-		<Unit filename="src\fltk\fl_smimg.h" />
-		<Unit filename="src\fltk\rawprocessor.cpp" />
-		<Unit filename="src\fltk\rawprocessor.h" />
-		<Unit filename="src\fltk\stdunicode.cpp" />
-		<Unit filename="src\fltk\stdunicode.h" />
-		<Unit filename="src\fltk\tchar.h" />
+		<Unit filename="res\resource.h" />
+		<Unit filename="res\resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="src\dentaldetector.cpp" />
+		<Unit filename="src\dentaldetector.h" />
+		<Unit filename="src\dentalraw.cpp" />
+		<Unit filename="src\dentalraw.h" />
+		<Unit filename="src\dlgColors.h" />
+		<Unit filename="src\dlgCoords.h" />
+		<Unit filename="src\dlgMain.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src\dlgMain.h" />
+		<Unit filename="src\fl\Fl_HistogramDrawer.cpp" />
+		<Unit filename="src\fl\Fl_HistogramDrawer.h" />
+		<Unit filename="src\fl\Fl_ImageDisplayBox.cpp" />
+		<Unit filename="src\fl\Fl_ImageDisplayBox.h" />
+		<Unit filename="src\fl\Fl_ImageViewer.cpp">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src\fl\Fl_ImageViewer.h" />
 		<Unit filename="src\main.cpp" />
-		<Unit filename="src\winMain.cpp" />
-		<Unit filename="src\winMain.h" />
+		<Unit filename="src\stdunicode.cpp" />
+		<Unit filename="src\stdunicode.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
+			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

@@ -1,17 +1,27 @@
-#include "winMain.h"
+#include <cstdio>
+#include <cstdlib>
+#include <string>
 
-#define START_WIN_WIDTH     600
-#define START_WIN_HEIGHT    400
+#ifdef _WIN32
+#include <tchar.h>
+#else
+#include "tchar.h"
+#endif
 
-static winMain* wMain = NULL;
+using namespace std;
+
+#include "dlgMain.h"
 
 int main (int argc, char ** argv)
 {
-    wMain = new winMain( START_WIN_WIDTH, START_WIN_HEIGHT, argc, argv );
+    DialogMain* dlgMain = new DialogMain( argc, argv );
 
-    if ( wMain != NULL )
+    int retCode = 0;
+
+    if ( dlgMain != NULL )
     {
-        wMain->title( "RAW viewer" );
-        return wMain->run();
+        retCode = dlgMain->Run();
     }
+
+    return retCode;
 }
